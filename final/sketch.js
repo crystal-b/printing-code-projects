@@ -1,3 +1,5 @@
+// inspired by https://www.pinterest.com/pin/241294492513786204/
+
 var r = new Rune({
   container: "#canvas",
   width: 850,
@@ -24,6 +26,19 @@ function nothing() {
       .fill(0)
       .stroke(false);
   }
+  function no() {
+    var diameter = 300;
+    var sc = 255;
+    var sw = 70;
+    r.circle(width/2, (height/2)-5, diameter)
+      .fill(false)
+      .stroke(sc)
+      .strokeWidth(sw);
+    r.rect(400, 300, sw, diameter*2)
+      .fill(255, 0, 0)
+      .stroke(false)
+      .rotate(-10);
+  }
 
 //ALGORITHM
 // set row Y
@@ -40,6 +55,7 @@ function nothing() {
       }
     }
   }
+  no();
 }
 
 //MAKE STUFF HAPPEN
