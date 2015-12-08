@@ -26,18 +26,22 @@ function nothing() {
       .fill(0)
       .stroke(false);
   }
+  function bullet() {
+    //var bulletGroup = 
+
+  }
   function no() {
     var diameter = 300;
     var sc = 255;
     var sw = 70;
-    r.circle(width/2, (height/2)-5, diameter)
+    r.circle(width/2, height/2, diameter)
       .fill(false)
       .stroke(sc)
       .strokeWidth(sw);
     r.rect(400, 300, sw, diameter*2)
-      .fill(255, 0, 0)
+      .fill(sc)
       .stroke(false)
-      .rotate(-10);
+      .rotate(-45, width/2, height/2);
   }
 
 //ALGORITHM
@@ -49,14 +53,16 @@ function nothing() {
      for (i = 0; i <= 5; i++) {
         w=50;
         w = w * Math.round(Rune.random(1,3));
-// call shapes
+// call positive shapes
         rectangle();
         x = x+20;
       }
     }
   }
+// call negative shapes
   no();
 }
+
 
 //MAKE STUFF HAPPEN
 nothing();
