@@ -27,7 +27,22 @@ function nothing() {
       .stroke(false);
   }
   function bullet() {
-    //var bulletGroup = 
+    //what the hell is this doing?
+    //var bulletGroup = r.group(x, y, parent);
+ var bulletGroup =   r.rect(50, 50, 40, 20)
+      .fill(255, 0, 0)
+      .stroke(false)
+    r.rect(60, 50, 5, 20)
+        .fill(255)
+        .stroke(false)
+    r.triangle(90, 50, 110, 60, 90, 70)
+          .fill(255, 0, 0)
+      .stroke(false);
+
+      console.log(bulletGroup.vars);
+      bulletGroup.move(500, 100);
+
+
 
   }
   function no() {
@@ -61,6 +76,7 @@ function nothing() {
   }
 // call negative shapes
   no();
+  bullet();
 }
 
 
