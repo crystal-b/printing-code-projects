@@ -19,12 +19,38 @@ function nothing() {
   var width = 850;
   var s = 50;
   var z = 100;
+  var dynamic = true;
 
 //SHAPES
   function rectangle() {
     r.rect(x, y, w, h)
       .fill(0)
       .stroke(false);
+  }
+  function rectanglePath() {
+    // var rectPath = r.path(x, y)
+    //   .lineTo(w, y)
+    //   .lineTo(w, h)
+    //   .lineTo(x, h)
+    //   .closePath()
+    //   .fill(0)
+    //   .stroke(false);
+    // var rectPath = r.path(0, 0)
+    //   .lineTo(50, 0)
+    //   .lineTo(50, 30)
+    //   .lineTo(0, 30)
+    //   .closePath()
+    //   .fill(0)
+    //   .stroke(false);
+    var rectPath = r.path(x, y)
+      .lineTo(w, 0)
+      .lineTo(w, h)
+      .lineTo(0, h)
+      .closePath()
+      .fill(0)
+      .stroke(false);
+
+    rectPath.move(x, y);
   }
   function bullet() {
     //what the hell is this doing?
@@ -40,7 +66,8 @@ function nothing() {
       .lineTo(40, 20)
       .lineTo(15, 20)
       .closePath()
-      .fill(255, 0, 0);
+      .fill(255, 0, 0)
+      .stroke(false);
 
     bulletGroup.move(x, y);
   }
@@ -63,18 +90,24 @@ function nothing() {
   for (y = 0; y <= height; y += s) {
 // set column X
     for (x = 0; x <= width; x += z) {
-// set column width
-     for (i = 0; i <= 5; i++) {
-        w=50;
-        w = w * Math.round(Rune.random(1,3));
-// call positive shapes
-        rectangle();
+      if (dynamic === true) {
+      // set column width
+        for (i = 0; i <= 5; i++) {
+          w=50;
+          w = w * Math.round(Rune.random(1,3));
+      // call dynamic positive shapes
+          rectanglePath();
+          x = x+20;
+        }
+      }
+      else {
+      // call positive shapes
         bullet();
-        x = x+20;
       }
     }
   }
 // call negative shapes
+  //rectanglePath();
   no();
 }
 
