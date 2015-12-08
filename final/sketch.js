@@ -29,21 +29,20 @@ function nothing() {
   function bullet() {
     //what the hell is this doing?
     //var bulletGroup = r.group(x, y, parent);
- var bulletGroup =   r.rect(50, 50, 40, 20)
-      .fill(255, 0, 0)
-      .stroke(false)
-    r.rect(60, 50, 5, 20)
-        .fill(255)
-        .stroke(false)
-    r.triangle(90, 50, 110, 60, 90, 70)
-          .fill(255, 0, 0)
-      .stroke(false);
+    var bulletGroup = r.path(50, 50)
+      .lineTo(10, 0)
+      .lineTo(10, 20)
+      .lineTo(0, 20)
+      .closePath()
+      .moveTo(15, 0)
+      .lineTo(40, 0)
+      .lineTo(60, 10)
+      .lineTo(40, 20)
+      .lineTo(15, 20)
+      .closePath()
+      .fill(255, 0, 0);
 
-      console.log(bulletGroup.vars);
-      bulletGroup.move(500, 100);
-
-
-
+    bulletGroup.move(x, y);
   }
   function no() {
     var diameter = 300;
@@ -70,13 +69,13 @@ function nothing() {
         w = w * Math.round(Rune.random(1,3));
 // call positive shapes
         rectangle();
+        bullet();
         x = x+20;
       }
     }
   }
 // call negative shapes
   no();
-  bullet();
 }
 
 
