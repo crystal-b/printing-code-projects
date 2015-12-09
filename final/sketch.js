@@ -17,8 +17,12 @@ var r = new Rune({
   var width = 850;
   var s = 50;
   var z = 100;
-  var dynamic = false;
-
+  var xStep = 15;
+  var yStep = 5;
+  var noiseStep = 0;
+  var noiseStep2 = 50;
+  var noiseStep3 = h;
+  var dynamic = true;
 
 /* * * SHAPES * * */
   function rectangle() {
@@ -26,54 +30,49 @@ var r = new Rune({
       .fill(0)
       .stroke(false);
   }
-  // function rectanglePath() {
-  //   var rectPath = r.path(x, y)
-  //     .lineTo(w, 0)
-  //     .lineTo(w, h)
-  //     .lineTo(0, h)
-  //     .closePath()
-  //     .fill(0)
-  //     .stroke(false);
-  //   rectPath.move(x, y);
-  // }
-
   function rectanglePath() {
-    var xStep = 15;
-    var yStep = 5;
+    var rectPath = r.path(x, y)
+      .lineTo(w, 0)
+      .lineTo(w, h)
+      .lineTo(0, h)
+      .closePath()
+      .fill(0)
+      .stroke(false);
+    rectPath.move(x, y);
+  }
+
+  function rectangleNoisePath() {
     var noise = new Rune.Noise();
-    var noiseStep = 0;
-    var noiseStep2 = 50;
-    var noiseStep3 = 30;
-    var rectPath = r.path(0, 0)
+    var rectNoisePath = r.path(0, 0)
       .fill(0)
       .stroke(0);
-      for(var j = 0; j <= 50; j += xStep) {
-        var k = noise.get(noiseStep) * 5;
-        rectPath.lineTo(j, k);
+      for(var j = 0; j <= w; j += xStep) {
+        var k = noise.get(noiseStep) * 2;
+        rectNoisePath.lineTo(j, k);
 
         noiseStep += 0.1;
       }
       // for(k = 0; k <= 30; k += yStep) {
       //   j = noise.get(noiseStep2) * 100;
-      //   rectPath.lineTo(j, k);
+      //   rectNoisePath.lineTo(j, k);
 
       //   noiseStep2 += 0.01;
       //   console.log(j);
       // }
-      for(j = 50; j <= 50 && j >= 0; j -= xStep) {
-        k = noise.get(noiseStep3) * 60;
-        rectPath.lineTo(j, k);
+      // for(j = 50; j <= 50 && j >= 0; j -= xStep) {
+      //   k = noise.get(noiseStep3) * 60;
+      //   rectNoisePath.lineTo(j, k);
 
-        noiseStep3 += 0.1;
-      }
+      //   noiseStep3 += 0.1;
+      // }
       // for(k = 30; k <= 30; k -= yStep) {
       //   j = noise.get(noiseStep) * 5;
-      //   rectPath.lineTo(j, k);
+      //   rectNoisePath.lineTo(j, k);
 
       //   noiseStep += 0.1;
       // }
 
-    rectPath.move(x, y);
+    rectNoisePath.move(x, y);
   }
   /* * * NOISE * * */
 // var xStep = 15;
@@ -136,7 +135,7 @@ function nothing() {
           w = 50;
           w = w * Math.round(Rune.random(1,3));
         // call dynamic positive shapes
-          rectanglePath();
+          rectangleNoisePath();
           x = x+20;
         }
       }
@@ -145,7 +144,7 @@ function nothing() {
         z = 72;
       // call non-dynamic positive shapes
         //bullet();
-        rectanglePath();
+        rectangleNoisePath();
       }
     }
   }
