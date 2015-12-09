@@ -1,11 +1,22 @@
 // inspired by https://www.pinterest.com/pin/241294492513786204/
+var poster = false;
 
-var r = new Rune({
-  container: "#canvas",
-  width: 850,
-  height: 1199,
-  debug: true
-});
+if(poster === true) {
+  var r = new Rune({
+    container: "#canvas",
+    width: 850,
+    height: 1199,
+    debug: true
+  }); 
+}
+else {
+  var r = new Rune({
+    container: "#canvas",
+    width: 850,
+    height: 1800,
+    debug: true
+  });
+}
 
 
 /* * * VARIABLES * * */
@@ -40,43 +51,42 @@ var r = new Rune({
       .stroke(false);
     rectPath.move(x, y);
   }
+  // function rectangleNoisePath() {
+  //   var noise = new Rune.Noise();
+  //   var rectNoisePath = r.path(0, 0)
+  //     .fill(0)
+  //     .stroke(0);
+  //     for(var j = 0; j <= w; j += xStep) {
+  //       var k = noise.get(noiseStep) * 2;
+  //       rectNoisePath.lineTo(j, k);
 
-  function rectangleNoisePath() {
-    var noise = new Rune.Noise();
-    var rectNoisePath = r.path(0, 0)
-      .fill(0)
-      .stroke(0);
-      for(var j = 0; j <= w; j += xStep) {
-        var k = noise.get(noiseStep) * 2;
-        rectNoisePath.lineTo(j, k);
+  //       noiseStep += 0.1;
+  //     }
+  //     // for(k = 0; k <= 30; k += yStep) {
+  //     //   j = noise.get(noiseStep2) * 100;
+  //     //   rectNoisePath.lineTo(j, k);
 
-        noiseStep += 0.1;
-      }
-      // for(k = 0; k <= 30; k += yStep) {
-      //   j = noise.get(noiseStep2) * 100;
-      //   rectNoisePath.lineTo(j, k);
+  //     //   noiseStep2 += 0.01;
+  //     //   console.log(j);
+  //     // }
+  //     /* * * ????? * * */
+  //     /* I'm not sure how to access the w value in the  first for loop and reuse it in the second one */
+  //     for(j = 50; j <= 50 && j >= 0; j -= xStep) {
+  //       k = noise.get(noiseStep3) * 60;
+  //       rectNoisePath.lineTo(j, k);
 
-      //   noiseStep2 += 0.01;
-      //   console.log(j);
-      // }
-      /* * * ????? * * */
-      /* I'm not sure how to access the w value in the  first for loop and reuse it in the second one */
-      for(j = 50; j <= 50 && j >= 0; j -= xStep) {
-        k = noise.get(noiseStep3) * 60;
-        rectNoisePath.lineTo(j, k);
+  //       noiseStep3 += 0.1;
+  //     }
+  //     // for(k = 30; k <= 30; k -= yStep) {
+  //     //   j = noise.get(noiseStep) * 5;
+  //     //   rectNoisePath.lineTo(j, k);
 
-        noiseStep3 += 0.1;
-      }
-      // for(k = 30; k <= 30; k -= yStep) {
-      //   j = noise.get(noiseStep) * 5;
-      //   rectNoisePath.lineTo(j, k);
+  //     //   noiseStep += 0.1;
+  //     // }
 
-      //   noiseStep += 0.1;
-      // }
-
-    rectNoisePath.move(x, y);
-  }
-  /* * * NOISE * * */
+  //   rectNoisePath.move(x, y);
+  // }
+/* * * NOISE * * */
 // var xStep = 15;
 // var noise = new Rune.Noise();
 // var noiseStep = 0;
@@ -86,7 +96,6 @@ var r = new Rune({
 
 //   noiseStep += 0.1;
 // }
-
   function bullet() {
     var bulletGroup = r.path(50, 50)
       .lineTo(10, 0)
@@ -137,7 +146,7 @@ function nothing() {
           w = 50;
           w = w * Math.round(Rune.random(1,3));
         // call dynamic positive shapes
-          rectangleNoisePath();
+          rectanglePath();
           x = x+20;
         }
       }
@@ -145,8 +154,7 @@ function nothing() {
       // adjust column width
         z = 72;
       // call non-dynamic positive shapes
-        //bullet();
-        rectangleNoisePath();
+        bullet();
       }
     }
   }
