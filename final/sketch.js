@@ -59,12 +59,14 @@ var r = new Rune({
       //   noiseStep2 += 0.01;
       //   console.log(j);
       // }
-      // for(j = 50; j <= 50 && j >= 0; j -= xStep) {
-      //   k = noise.get(noiseStep3) * 60;
-      //   rectNoisePath.lineTo(j, k);
+      /* * * ????? * * */
+      /* I'm not sure how to access the w value in the  first for loop and reuse it in the second one */
+      for(j = 50; j <= 50 && j >= 0; j -= xStep) {
+        k = noise.get(noiseStep3) * 60;
+        rectNoisePath.lineTo(j, k);
 
-      //   noiseStep3 += 0.1;
-      // }
+        noiseStep3 += 0.1;
+      }
       // for(k = 30; k <= 30; k -= yStep) {
       //   j = noise.get(noiseStep) * 5;
       //   rectNoisePath.lineTo(j, k);
