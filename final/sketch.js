@@ -20,6 +20,7 @@ else {
 
 
 /* * * VARIABLES * * */
+  var colors = (255, 0, 0);
   var x = 0;
   var y = 0;
   var w = 50;
@@ -99,7 +100,7 @@ else {
 //   noiseStep += 0.1;
 // }
   function bullet() {
-    var bulletGroup = r.path(0, 0)
+    var bulletGroup = r.path(x, y)
       .lineTo(10, 0)
       .lineTo(10, 20)
       .lineTo(0, 20)
@@ -113,15 +114,27 @@ else {
       .fill(255, 0, 0)
       .stroke(false);
     bulletGroup.move(x, y);
-    var tip = r.ellipse(55, 10, 10, 3)
-        .fill(255, 0, 0)
-        .stroke(false);
-    tip.move(x+50, y+10);
-    
-    // for(var l = 0; l < bulletGroup.length; l++) {
-    //   bullets[l] = x + bullets[l];
-    // };
-    // console.log(bullets);
+    // var tip = r.ellipse(x+55, y+10, 10, 3)
+    //     .fill(color)
+    //     .stroke(false);
+    // tip.move(x+50, y+10);
+    console.log(bulletGroup.fill);
+  }
+  function bulletEmpty(x, y) {
+    var bulletGroupEmpty = r.path(x, y)
+      .lineTo(10, 0)
+      .lineTo(10, 20)
+      .lineTo(0, 20)
+      .closePath()
+      .moveTo(15, 0)
+      .lineTo(35, 0)
+      .lineTo(55, 10)
+      .lineTo(35, 20)
+      .lineTo(15, 20)
+      .closePath()
+      .fill(0)
+      .stroke(false);
+    bulletGroupEmpty.move(x, y);
   }
   function no() {
     var diameter = 300;
@@ -166,25 +179,22 @@ function nothing() {
         z = 72;
       // call non-dynamic positive shapes
         bullet();
-        bullets.push("{ xPos: "+ x + ", yPos: " + y + " }");
+        // bullets.push("{ " + "xPos" + ": " + x + ", " + "yPos" + ": " + y + " }");
+        bullets.push({xPos : x, yPos : y});
       }
     }
   }
 // call negative shapes
   //no();
 }
-
-// if (array[j].x >= object[*].x && array[j].y >= object[*].y) {
-//   move x 5 pixels away
-//   move y 5 pixels away
-// }
+// bullet(bullets[1].xPos+5, bullets[1].yPos+5);
 
 
 /* * * MAKE STUFF HAPPEN * * */
 nothing();
 console.log(bullets[1]);
-
-/* * * ARRAYS * * */
+bulletEmpty(bullets[1].xPos, bullets[1].yPos);
+bulletEmpty(50, 700);
 
 
 r.draw();
