@@ -1,5 +1,5 @@
 // inspired by https://www.pinterest.com/pin/241294492513786204/
-var poster = false;
+var poster = true;
 
 if(poster === true) {
   var r = new Rune({
@@ -33,7 +33,9 @@ else {
   var noiseStep = 0;
   var noiseStep2 = 50;
   var noiseStep3 = h;
-  var dynamic = true;
+  var bullets = [];
+  var l = 0;
+  var dynamic = false;
 
 /* * * SHAPES * * */
   function rectangle() {
@@ -97,20 +99,29 @@ else {
 //   noiseStep += 0.1;
 // }
   function bullet() {
-    var bulletGroup = r.path(50, 50)
+    var bulletGroup = r.path(0, 0)
       .lineTo(10, 0)
       .lineTo(10, 20)
       .lineTo(0, 20)
       .closePath()
       .moveTo(15, 0)
-      .lineTo(40, 0)
-      .lineTo(60, 10)
-      .lineTo(40, 20)
+      .lineTo(35, 0)
+      .lineTo(55, 10)
+      .lineTo(35, 20)
       .lineTo(15, 20)
       .closePath()
       .fill(255, 0, 0)
       .stroke(false);
     bulletGroup.move(x, y);
+    var tip = r.ellipse(55, 10, 10, 3)
+        .fill(255, 0, 0)
+        .stroke(false);
+    tip.move(x+50, y+10);
+    
+    // for(var l = 0; l < bulletGroup.length; l++) {
+    //   bullets[l] = x + bullets[l];
+    // };
+    // console.log(bullets);
   }
   function no() {
     var diameter = 300;
@@ -155,11 +166,12 @@ function nothing() {
         z = 72;
       // call non-dynamic positive shapes
         bullet();
+        bullets.push("{ xPos: "+ x + ", yPos: " + y + " }");
       }
     }
   }
 // call negative shapes
-  no();
+  //no();
 }
 
 // if (array[j].x >= object[*].x && array[j].y >= object[*].y) {
@@ -170,6 +182,10 @@ function nothing() {
 
 /* * * MAKE STUFF HAPPEN * * */
 nothing();
+console.log(bullets[1]);
+
+/* * * ARRAYS * * */
+
 
 r.draw();
 
