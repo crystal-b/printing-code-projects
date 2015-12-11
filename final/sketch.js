@@ -36,6 +36,9 @@ else {
   var noiseStep3 = h;
   var bullets = [];
   var l = 0;
+  var fadeX = 0;
+  var fadeY = 0;
+  var alpha = 1;
   var dynamic = false;
 
 /* * * SHAPES * * */
@@ -147,6 +150,47 @@ else {
       bulletFill(bullets[t].xPos, bullets[t].yPos);
     }
   }
+    function fadeRect () {
+      var fading = r.rect(fadeX, fadeY, width, 1)
+        .fill('hsv', 100, 100, 100)
+        .stroke(false);
+      for (j = 1/height; j<=1; j+=1/height) {
+          fading.copy().move(0, j*1000, true).vars.fill
+            .lighten(j);
+      }
+      // fading.copy().move(0, 400, true).vars.fill
+      //   .lighten(0.01);
+      // fading.copy().move(0, 300, true).vars.fill
+      //   .lighten(0.05);
+      // fading.copy().move(0, 200, true).vars.fill
+      //   .lighten(0.1);
+      // fading.copy().move(0, 100, true).vars.fill
+      //   .lighten(0.15);
+    }
+    function fade() {
+  // //     for (var clear = alpha/100; clear <= alpha; clear+=alpha/100) {
+  // // //       var fadebkg = r.rect(x+clear, y, width, 100)
+  // // //         // .fill(rgb(255, 255, 255, clear));
+  // // //         .fill(255);
+  // // // //       // console.log(clear);
+  // // // //     }
+  // //       var fadeRect = r.rect(fadeX, fadeY+=clear, width, 100)
+  // //       .fill(0, clear)
+  // //       .stroke(false);
+  // //       console.log(fadeX, fadeY);
+  // //       console.log(clear);
+  // //       console.log(fadeRect.vars);
+  // //     }
+  //     for(var clear = 0; clear < .1; clear+=.1) {
+  //       for (fadeY = 0; fadeY <= 100; fadeY+=1) {
+  //         fadeRect();
+  //         console.log(fadeY);
+  //       }
+  //       //fadeY = fadeY + 100;
+  //     }
+
+  // var 
+  }
   function no() {
     var diameter = 300;
     var sc = 255;
@@ -206,9 +250,11 @@ callback();
 
 /* * * MAKE STUFF HAPPEN * * */
 nothing();
-if (callback === true) {
-  bulletText();
-}
+// if (callback === true) {
+//   bulletText();
+// }
+fadeRect();
+
 
 
 r.draw();
