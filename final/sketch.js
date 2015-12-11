@@ -20,7 +20,7 @@ else {
 
 
 /* * * VARIABLES * * */
-  var colors = (255, 0, 0);
+  var c = 255;
   var x = 0;
   var y = 0;
   var w = 50;
@@ -120,8 +120,8 @@ else {
     // tip.move(x+50, y+10);
     console.log(bulletGroup.fill);
   }
-  function bulletEmpty(x, y) {
-    var bulletGroupEmpty = r.path(x, y)
+  function bulletFill(x, y) {
+    var bulletGroupFill = r.path(x, y)
       .lineTo(10, 0)
       .lineTo(10, 20)
       .lineTo(0, 20)
@@ -132,9 +132,20 @@ else {
       .lineTo(35, 20)
       .lineTo(15, 20)
       .closePath()
-      .fill(0)
-      .stroke(false);
-    bulletGroupEmpty.move(x, y);
+      .fill(c)
+      .stroke(c);
+    bulletGroupFill.move(x, y);
+  }
+  function bulletText() {
+    for (var t = 76; t <= 76 * 5; t += 12) {
+      bulletFill(bullets[t].xPos, bullets[t].yPos);
+    }
+    for (var t = 78; t <= 78 * 5; t += 12) {
+      bulletFill(bullets[t].xPos, bullets[t].yPos);
+    }
+    for (var t = 3; t <= 51; t += 12) {
+      bulletFill(bullets[t].xPos, bullets[t].yPos);
+    }
   }
   function no() {
     var diameter = 300;
@@ -149,6 +160,9 @@ else {
       .fill(sc)
       .stroke(false)
       .rotate(-45, width/2, height/2);
+  }
+  function callback() {
+    return true;
   }
 
 
@@ -179,22 +193,22 @@ function nothing() {
         z = 72;
       // call non-dynamic positive shapes
         bullet();
-        // bullets.push("{ " + "xPos" + ": " + x + ", " + "yPos" + ": " + y + " }");
+      // update array with a new object
         bullets.push({xPos : x, yPos : y});
       }
     }
   }
 // call negative shapes
   //no();
+callback();
 }
-// bullet(bullets[1].xPos+5, bullets[1].yPos+5);
 
 
 /* * * MAKE STUFF HAPPEN * * */
 nothing();
-console.log(bullets[1]);
-bulletEmpty(bullets[1].xPos, bullets[1].yPos);
-bulletEmpty(50, 700);
+if (callback === true) {
+  bulletText();
+}
 
 
 r.draw();
