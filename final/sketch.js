@@ -152,11 +152,13 @@ else {
   }
     function fadeRect () {
       var fading = r.rect(fadeX, fadeY, width, 1)
-        .fill('hsv', 100, 100, 100)
+        .fill('hsv', 100, 100, 100, 0)
         .stroke(false);
       for (j = 1/height; j<=1; j+=1/height) {
-          fading.copy().move(0, j*1000, true).vars.fill
-            .lighten(j);
+          fading.fill('hsv', 0, 0, 100, j)
+          .stroke(false);
+          fading.copy().move(0, 150+j*1000, true);
+          console.log(j);
       }
       // fading.copy().move(0, 400, true).vars.fill
       //   .lighten(0.01);
@@ -253,6 +255,8 @@ nothing();
 // if (callback === true) {
 //   bulletText();
 // }
+fadeRect();
+fadeRect();
 fadeRect();
 
 
