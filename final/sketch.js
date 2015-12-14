@@ -20,6 +20,7 @@ else {
 
 
 /* * * VARIABLES * * */
+  var b = 100;
   var c = 255;
   var x = 0;
   var y = 0;
@@ -40,6 +41,7 @@ else {
   var fadeY = 0;
   var alpha = 1;
   var dynamic = false;
+
 
 /* * * SHAPES * * */
   function rectangle() {
@@ -103,6 +105,13 @@ else {
 //   noiseStep += 0.1;
 // }
   function bullet() {
+    var tip = r.ellipse(x+55, y+10, 40, 20)
+        .fill('hsv', 0, b, 100, alpha)
+        .stroke(false);
+    tip.move(x+35, y+10);
+    r.rect(x+15, y, 20, 20)
+      .fill(255)
+      .stroke(false);
     var bulletGroup = r.path(x, y)
       .lineTo(10, 0)
       .lineTo(10, 20)
@@ -110,18 +119,24 @@ else {
       .closePath()
       .moveTo(15, 0)
       .lineTo(35, 0)
-      .lineTo(55, 10)
       .lineTo(35, 20)
       .lineTo(15, 20)
       .closePath()
-      .fill(255, 0, 0)
+      .fill('hsv', 0, b, 100, alpha)
       .stroke(false);
     bulletGroup.move(x, y);
-    // var tip = r.ellipse(x+55, y+10, 10, 3)
-    //     .fill(color)
+
+    //console.log(bulletGroup.fill);
+    // var tip = r.path(x, y)
+    //     .lineTo(35, 0)
+    //     .curveTo(55, 0)
+    //     .lineTo(35, 20)
+    //     .lineTo(30, 20)
+    //     .closePath()
+    //     .fill('hsv', 100, b, 100, alpha)
     //     .stroke(false);
-    // tip.move(x+50, y+10);
-    console.log(bulletGroup.fill);
+    // tip.move(x+35, y+10);
+
   }
   function bulletFill(x, y) {
     var bulletGroupFill = r.path(x, y)
@@ -150,7 +165,7 @@ else {
       bulletFill(bullets[t].xPos, bullets[t].yPos);
     }
   }
-    function fadeRect () {
+    function fadeRect() {
       var fading = r.rect(fadeX, fadeY, width, 1)
         .fill('hsv', 100, 100, 100, 0)
         .stroke(false);
@@ -207,9 +222,8 @@ else {
       .stroke(false)
       .rotate(-45, width/2, height/2);
   }
-  function callback() {
-    return true;
-  }
+
+
 
 
 
@@ -221,6 +235,39 @@ function emphasize() {
 function nothing() {
 // set row Y
   for (y = 0; y <= height; y += s) {
+    // if(y >= 500 && y < 550) {
+    //   alpha = .9;
+    // }
+    // else if(y >= 550 && y < 600) {
+    //   alpha = .8;
+    // }
+    if(y >= 250 && y < 350) {
+      alpha = .7;
+    }
+    else if(y >= 350 && y < 450) {
+      alpha = .6;
+    }
+    else if(y >= 450 && y < 550) {
+      alpha = .5;
+    }
+    else if(y >= 550 && y < 650) {
+      alpha = .4;
+    }
+    else if(y >= 650 && y < 750) {
+      alpha = .3;
+    }
+    else if(y >= 750 && y < 850) {
+      alpha = .2;
+    }
+    else if(y >= 850 && y < 950) {
+      alpha = .1;
+    }
+    else if(y >= 950 && y < 1000) {
+      alpha = .05;
+    }
+    else if(y >= 1000) {
+      b = 0;
+    }
   // set column X
     for (x = 0; x <= width; x += z) {
       if (dynamic === true) {
@@ -246,7 +293,6 @@ function nothing() {
   }
 // call negative shapes
   //no();
-callback();
 }
 
 
@@ -255,9 +301,63 @@ nothing();
 // if (callback === true) {
 //   bulletText();
 // }
-fadeRect();
-fadeRect();
-fadeRect();
+//timer();
+    r.on('keydown', function(mouse) {
+      console.log(mouse.x, mouse.y);
+    });
+ //    r.on('mousemove', function(mouse) {
+ //  //console.log("the mouse moved to", mouse.x, mouse.y);
+ //  //if(mouse.y > 800) {
+ //    fadeRect();
+ // // }
+//});
+
+r.text("In These Times", width/2, 1170)
+  .fill(70)
+  .stroke(false)
+  .fontSize(125)
+  .textAlign("center")
+  .fontFamily("Futura");
+
+r.rect(430, 500, 350, 200)
+  .fill(255)
+  .stroke(false);
+
+r.text("Whatever", (width/7) * 4, 540)
+  .fill('hsv', 45, 65.5, 88.6, 1)
+  .stroke(false)
+  .fontSize(40)
+  //.textAlign("center")
+  .fontFamily("Futura");
+  r.text("Happened to", (width/7) * 4, 600)
+  .fill('hsv', 0, 0, 0, .6)
+  .stroke(false)
+  .fontSize(40)
+  //.textAlign("center")
+  .fontFamily("Futura");
+    r.text("Gun Control?", (width/7) * 4, 660)
+  .fill('hsv', 0, 0, 0, .3)
+  .stroke(false)
+  .fontSize(40)
+ // .textAlign("center")
+  .fontFamily("Futura");
+
+
+    // var bulletFilled = r.path(x, y)
+    //   .lineTo(10, 0)
+    //   .lineTo(10, 20)
+    //   .lineTo(0, 20)
+    //   .closePath()
+    //   .moveTo(15, 0)
+    //   .lineTo(35, 0)
+    //   .lineTo(55, 10)
+    //   .lineTo(35, 20)
+    //   .lineTo(15, 20)
+    //   .closePath()
+    //   .fill('hsv', 0, 0, 100, 1)
+    //   .stroke(255);
+    // bulletFilled.move(100, 200);
+
 
 
 
