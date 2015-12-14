@@ -152,48 +152,16 @@ else {
       bulletFill(bullets[t].xPos, bullets[t].yPos);
     }
   }
-    function fadeRect() {
-      var fading = r.rect(fadeX, fadeY, width, 1)
-        .fill('hsv', 100, 100, 100, 0)
+  function fade() {
+    var fading = r.rect(fadeX, fadeY, width, 1)
+      .fill('hsv', 100, 100, 100, 0)
+      .stroke(false);
+    for (j = 1/height; j<=1; j+=1/height) {
+        fading.fill('hsv', 0, 0, 100, j)
         .stroke(false);
-      for (j = 1/height; j<=1; j+=1/height) {
-          fading.fill('hsv', 0, 0, 100, j)
-          .stroke(false);
-          fading.copy().move(0, 150+j*1000, true);
-          console.log(j);
-      }
-      // fading.copy().move(0, 400, true).vars.fill
-      //   .lighten(0.01);
-      // fading.copy().move(0, 300, true).vars.fill
-      //   .lighten(0.05);
-      // fading.copy().move(0, 200, true).vars.fill
-      //   .lighten(0.1);
-      // fading.copy().move(0, 100, true).vars.fill
-      //   .lighten(0.15);
+        fading.copy().move(0, 150+j*1000, true);
+        console.log(j);
     }
-    function fade() {
-  // //     for (var clear = alpha/100; clear <= alpha; clear+=alpha/100) {
-  // // //       var fadebkg = r.rect(x+clear, y, width, 100)
-  // // //         // .fill(rgb(255, 255, 255, clear));
-  // // //         .fill(255);
-  // // // //       // console.log(clear);
-  // // // //     }
-  // //       var fadeRect = r.rect(fadeX, fadeY+=clear, width, 100)
-  // //       .fill(0, clear)
-  // //       .stroke(false);
-  // //       console.log(fadeX, fadeY);
-  // //       console.log(clear);
-  // //       console.log(fadeRect.vars);
-  // //     }
-  //     for(var clear = 0; clear < .1; clear+=.1) {
-  //       for (fadeY = 0; fadeY <= 100; fadeY+=1) {
-  //         fadeRect();
-  //         console.log(fadeY);
-  //       }
-  //       //fadeY = fadeY + 100;
-  //     }
-
-  // var 
   }
   function no() {
     var diameter = 300;
@@ -211,7 +179,37 @@ else {
   }
 
 
+/* * * TEXT * * */
+  function text() {
+    r.rect(429, 500, 350, 200)
+      .fill(255)
+      .stroke(false);
+    r.text("Whatever", (width/7) * 4, 540)
+      .fill('hsv', 0, 0, 0, 1)
+      .stroke(false)
+      .fontSize(40)
+      //.textAlign("center")
+      .fontFamily("Futura");
+    r.text("Happened to", (width/7) * 4, 600)
+      .fill('hsv', 0, 0, 0, .6)
+      .stroke(false)
+      .fontSize(40)
+      //.textAlign("center")
+      .fontFamily("Futura");
+    r.text("Gun Control?", (width/7) * 4, 660)
+      .fill('hsv', 0, 0, 0, .3)
+      .stroke(false)
+      .fontSize(40)
+     // .textAlign("center")
+      .fontFamily("Futura");
 
+    r.text("In These Times", width/2, 1170)
+      .fill(70)
+      .stroke(false)
+      .fontSize(125)
+      .textAlign("center")
+      .fontFamily("Futura");
+  }
 
 
 
@@ -285,49 +283,13 @@ function nothing() {
 
 /* * * MAKE STUFF HAPPEN * * */
 nothing();
-// if (callback === true) {
-//   bulletText();
-// }
-//timer();
-    r.on('keydown', function(mouse) {
-      console.log(mouse.x, mouse.y);
-    });
- //    r.on('mousemove', function(mouse) {
- //  //console.log("the mouse moved to", mouse.x, mouse.y);
- //  //if(mouse.y > 800) {
- //    fadeRect();
- // // }
-//});
+text();
 
-r.text("In These Times", width/2, 1170)
-  .fill(70)
-  .stroke(false)
-  .fontSize(125)
-  .textAlign("center")
-  .fontFamily("Futura");
 
-r.rect(430, 500, 350, 200)
-  .fill(255)
-  .stroke(false);
 
-r.text("Whatever", (width/7) * 4, 540)
-  .fill('hsv', 45, 65.5, 88.6, 1)
-  .stroke(false)
-  .fontSize(40)
-  //.textAlign("center")
-  .fontFamily("Futura");
-  r.text("Happened to", (width/7) * 4, 600)
-  .fill('hsv', 0, 0, 0, .6)
-  .stroke(false)
-  .fontSize(40)
-  //.textAlign("center")
-  .fontFamily("Futura");
-    r.text("Gun Control?", (width/7) * 4, 660)
-  .fill('hsv', 0, 0, 0, .3)
-  .stroke(false)
-  .fontSize(40)
- // .textAlign("center")
-  .fontFamily("Futura");
+
+
+
 
 
     // var bulletFilled = r.path(x, y)
