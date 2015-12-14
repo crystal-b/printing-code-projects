@@ -6,7 +6,7 @@ if(poster === true) {
     container: "#canvas",
     width: 850,
     height: 1199,
-    debug: true
+    //debug: true
   }); 
 }
 else {
@@ -14,7 +14,7 @@ else {
     container: "#canvas",
     width: 850,
     height: 1800,
-    debug: true
+    //debug: true
   });
 }
 
@@ -105,13 +105,12 @@ else {
 //   noiseStep += 0.1;
 // }
   function bullet() {
-    var tip = r.ellipse(x+55, y+10, 40, 20)
+    var tip = r.path(0, 0)
+        .moveTo(0, 20)
+        .curveTo(20, 10)
         .fill('hsv', 0, b, 100, alpha)
         .stroke(false);
-    tip.move(x+35, y+10);
-    r.rect(x+15, y, 20, 20)
-      .fill(255)
-      .stroke(false);
+    tip.move(x+35, y);
     var bulletGroup = r.path(x, y)
       .lineTo(10, 0)
       .lineTo(10, 20)
@@ -125,18 +124,6 @@ else {
       .fill('hsv', 0, b, 100, alpha)
       .stroke(false);
     bulletGroup.move(x, y);
-
-    //console.log(bulletGroup.fill);
-    // var tip = r.path(x, y)
-    //     .lineTo(35, 0)
-    //     .curveTo(55, 0)
-    //     .lineTo(35, 20)
-    //     .lineTo(30, 20)
-    //     .closePath()
-    //     .fill('hsv', 100, b, 100, alpha)
-    //     .stroke(false);
-    // tip.move(x+35, y+10);
-
   }
   function bulletFill(x, y) {
     var bulletGroupFill = r.path(x, y)
