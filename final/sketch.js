@@ -6,7 +6,7 @@ if(poster === true) {
     container: "#canvas",
     width: 850,
     height: 1199,
-    //debug: true
+    debug: false
   }); 
 }
 else {
@@ -14,7 +14,7 @@ else {
     container: "#canvas",
     width: 850,
     height: 1800,
-    //debug: true
+    debug: false
   });
 }
 
@@ -40,7 +40,7 @@ else {
   var fadeX = 0;
   var fadeY = 0;
   var alpha = 1;
-  var dynamic = false;
+  var dynamic = true;
 
 
 /* * * SHAPES * * */
@@ -59,51 +59,23 @@ else {
       .stroke(false);
     rectPath.move(x, y);
   }
-  // function rectangleNoisePath() {
-  //   var noise = new Rune.Noise();
-  //   var rectNoisePath = r.path(0, 0)
-  //     .fill(0)
-  //     .stroke(0);
-  //     for(var j = 0; j <= w; j += xStep) {
-  //       var k = noise.get(noiseStep) * 2;
-  //       rectNoisePath.lineTo(j, k);
-
-  //       noiseStep += 0.1;
-  //     }
-  //     // for(k = 0; k <= 30; k += yStep) {
-  //     //   j = noise.get(noiseStep2) * 100;
-  //     //   rectNoisePath.lineTo(j, k);
-
-  //     //   noiseStep2 += 0.01;
-  //     //   console.log(j);
-  //     // }
-  //     /* * * ????? * * */
-  //     /* I'm not sure how to access the w value in the  first for loop and reuse it in the second one */
-  //     for(j = 50; j <= 50 && j >= 0; j -= xStep) {
-  //       k = noise.get(noiseStep3) * 60;
-  //       rectNoisePath.lineTo(j, k);
-
-  //       noiseStep3 += 0.1;
-  //     }
-  //     // for(k = 30; k <= 30; k -= yStep) {
-  //     //   j = noise.get(noiseStep) * 5;
-  //     //   rectNoisePath.lineTo(j, k);
-
-  //     //   noiseStep += 0.1;
-  //     // }
-
-  //   rectNoisePath.move(x, y);
-  // }
-/* * * NOISE * * */
-// var xStep = 15;
-// var noise = new Rune.Noise();
-// var noiseStep = 0;
-// for(var j = 0; j <= w; j += xStep) {
-//   var k = noise.get(noiseStep) * 100;
-//   rectanglePath.lineTo(j, k);
-
-//   noiseStep += 0.1;
-// }
+  function rectangleNoisePath() {
+    var noise = new Rune.Noise();
+    var rectNoisePath = r.path(0, 0)
+      .fill(0)
+      .stroke(0);
+      for(var j = 0; j <= w; j += xStep) {
+        var k = noise.get(noiseStep) * 2;
+        rectNoisePath.lineTo(j, k);
+        noiseStep += 0.1;
+      }
+      for(j = 50; j <= 50 && j >= 0; j -= xStep) {
+        k = noise.get(noiseStep3) * 60;
+        rectNoisePath.lineTo(j, k);
+        noiseStep3 += 0.1;
+      }
+    rectNoisePath.move(x, y);
+  }
   function bullet() {
     var tip = r.path(0, 0)
         .moveTo(0, 20)
@@ -179,9 +151,11 @@ else {
   }
 
 
+
+
 /* * * TEXT * * */
   function text() {
-    r.rect(429, 500, 350, 200)
+    r.rect(425, 500, 355, 200)
       .fill(255)
       .stroke(false);
     r.text("Whatever", (width/7) * 4, 540)
@@ -202,7 +176,9 @@ else {
       .fontSize(40)
      // .textAlign("center")
       .fontFamily("Futura");
-
+    r.rect(0, 1045, width, 200)
+      .fill(255)
+      .stroke(false);
     r.text("In These Times", width/2, 1170)
       .fill(70)
       .stroke(false)
@@ -210,6 +186,7 @@ else {
       .textAlign("center")
       .fontFamily("Futura");
   }
+
 
 
 
@@ -263,6 +240,7 @@ function nothing() {
           w = w * Math.round(Rune.random(1,3));
         // call dynamic positive shapes
           rectanglePath();
+          //rectangleNoisePath();
           x = x+20;
         }
       }
