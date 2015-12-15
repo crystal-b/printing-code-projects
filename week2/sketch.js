@@ -33,7 +33,7 @@ function background() {
 }
 
 function earth() {
-  ellipse(0, 0, 150, 150, 255)
+  ellipse(20, 20, 110, 110, 150)
 }
 
 function potato() {
@@ -82,7 +82,7 @@ function potato() {
 
  for (j=0; j<780; j+=16) {
     var rand = Rune.random(-30, 30)
-    var om = Rune.random(-3, 3)
+    var om = Rune.random(-2, 2)
     ellipse(785-j, 1045-785-om, 170*.06, 200*.06, 255, false, 0, rand)
     ellipse(785-j, 1080-815-om, 160*.06, 200*.06, 255, false, 0, rand)
   }
